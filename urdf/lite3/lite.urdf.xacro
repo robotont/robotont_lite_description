@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<robot
+    xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:property name="length" value="0.0725"/>
+
+    <xacro:macro name="lite_macro" params="
+        prefix
+        box_color
+        pi_module_color
+        raspy_color
+        lidar_color
+        frame_height
+        frame_ground_clearance
+        frame_thickness
+    ">
+        <xacro:property name="cable_box_elevation" value="${frame_height + frame_ground_clearance + frame_thickness}"/>
+        <xacro:property name="box_center_distance" value="-0.151"/>
+        
+        <link name="${prefix}cable_box_link">
+            <visual>
+                <origin xyz="0 -0.043 0" rpy="${pi/2} 0 ${pi/2}"/>
+                <geometry>
+                    <mesh filename="file://$(find robotont_lite_description)/meshes/lite3/cable_box.STL"/>
+                </geometry>
+                <material name="${prefix}cable_box_material">
+                    <color rgba="${box_color}"/>
+                </material>
+            </visual>
+        </link>
+
+        <joint name="${prefix}cable_box_joint" type="fixed">
+            <parent link="${prefix}base_link"/>
+            <child link="${prefix}cable_box_link"/>
+            <axis xyz="0 0 0"/>
+            <origin
+                xyz="${box_center_distance} 0 ${cable_box_elevation}"
+                rpy="0 0 0"
+            />
+        </joint>
+
+        <link name="${prefix}pi_module_link">
+            <visual>
+                <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi/2}"/>
+                <geometry>
+                    <mesh filename="file://$(find robotont_lite_description)/meshes/lite3/pi_module.STL"/>
+                </geometry>
+                <material name="${prefix}pi_module_material">
+                    <color rgba="${pi_module_color}"/>
+                </material>
+            </visual>
+        </link>
+
+        <joint name="${prefix}pi_module_joint" type="fixed">
+            <parent link="${prefix}base_link"/>
+            <child link="${prefix}pi_module_link"/>
+            <axis xyz="0 0 0"/>
+            <origin
+                xyz="-0.073 -0.065 ${cable_box_elevation}"
+                rpy="0 0 0"
+            />
+        </joint>
+
+        <link name="${prefix}raspberry_link">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 ${pi}"/>
+                <geometry>
+                    <mesh filename="file://$(find robotont_lite_description)/meshes/lite3/RPi_case.STL"
+                    scale="0.001 0.001 0.001"/>
+                </geometry>
+                <material name="${prefix}rasberry_material">
+                    <color rgba="${raspy_color}"/>
+                </material>
+            </visual>
+        </link>
+
+        <joint name="${prefix}rasberry_joint" type="fixed">
+            <parent link="${prefix}base_link"/>
+            <child link="${prefix}raspberry_link"/>
+            <axis xyz="0 0 0"/>
+            <origin
+                xyz="0.005 0 ${cable_box_elevation+0.012}"
+                rpy="0 0 0"
+            />
+        </joint>
+
+        <link name="${prefix}lidar_link">
+            <visual>
+                <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi}"/>
+                <geometry>
+                    <mesh filename="file://$(find robotont_lite_description)/meshes/lite3/rplidar-a2m4-r1.STL"/>
+                </geometry>
+                <material name="${prefix}lidar_material">
+                    <color rgba="${lidar_color}"/>
+                </material>
+            </visual>
+        </link>
+
+        <joint name="${prefix}lidar_joint" type="fixed">
+            <parent link="${prefix}base_link"/>
+            <child link="${prefix}lidar_link"/>
+            <axis xyz="0 0 0"/>
+            <origin
+                xyz="0.065 -0.047 ${cable_box_elevation+0.053}"
+                rpy="0 0 0"
+            />
+        </joint>
+    </xacro:macro>
+</robot>

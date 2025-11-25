@@ -6,7 +6,9 @@ Description package for robotont lite version that contains meshes, URDF and xac
 1. List of dependencies
 
 1.1. rviz
+
 1.2. urdf
+
 1.3. xacro
 
 2. Install dependencies
@@ -38,9 +40,9 @@ source install/setup.bash
 ```
 ## Usage
 
-To display the robot model (e.g. in RViz), run:
+To display the robot model run:
 ```
 ros2 launch robotont_lite_description display_robot_model.launch.py
 ```
-This launch file will start the necessary nodes and load the Robotont Lite description into RViz (or whatever visualization is configured in the launch file).
+This launch file will start the necessary nodes and load the Robotont Lite description into RViz.
 

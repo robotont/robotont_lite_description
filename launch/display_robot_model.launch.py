@@ -25,7 +25,7 @@ def generate_launch_description():
         '" else "', str(package / "urdf/"), '" + (',
         '"/gen2_1/robotont.urdf.xacro" if "', generation_arg, '" == "2.1" else ',
         '"/gen3/robotont.urdf.xacro" if "', generation_arg, '" == "3" else ',
-        '"/lite3/robotont.urdf.xacro")'
+        '"/lite3/robotont_lite.urdf.xacro")'
     ])
 
     robot_description = ParameterValue(Command(['xacro ', robot_model_path]), value_type=str)

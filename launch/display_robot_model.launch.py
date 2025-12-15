@@ -18,11 +18,11 @@ def generate_launch_description():
 
     primary_color_decl = DeclareLaunchArgument(
         name='primary_color',
-        default_value='0.16 0.65 0.98 1.0'   # light blue
+        default_value='light_blue'  
     )
     secondary_color_decl = DeclareLaunchArgument(
         name='secondary_color',
-        default_value='1.0 1.0 0.0 1.0'   # yellow
+        default_value='yellow' 
     )
 
     model_arg = LaunchConfiguration('model')
@@ -43,9 +43,10 @@ def generate_launch_description():
     primary_color_rgba = PythonExpression([
         '"0.16 0.65 0.98 1.0" if "', primary_color_name, '" == "light_blue" else ',
         '"0.00 0.35 0.90 1.0" if "', primary_color_name, '" == "blue" else ',
+        '"1.00 1.00 0.00 1.0" if "', primary_color_name, '" == "yellow" else ',
         '"0.10 0.10 0.10 1.0" if "', primary_color_name, '" == "black" else ',
         '"0.45 0.20 0.65 1.0" if "', primary_color_name, '" == "purple" else ',
-        '"0.65 0.65 0.65 1.0" if "', primary_color_name, '" == "gray" else ',
+        '"0.75 0.75 0.75 1.0" if "', primary_color_name, '" == "gray" else ',
         '"0.00 0.45 0.25 1.0" if "', primary_color_name, '" == "dark_green" else ',
         '"0.00 0.80 0.30 1.0" if "', primary_color_name, '" == "green" else ',
         '"0.16 0.65 0.98 1.0"'
@@ -56,7 +57,7 @@ def generate_launch_description():
         '"0.00 0.35 0.90 1.0" if "', secondary_color_name, '" == "blue" else ',
         '"1.00 1.00 0.00 1.0" if "', secondary_color_name, '" == "yellow" else ',
         '"0.10 0.10 0.10 1.0" if "', secondary_color_name, '" == "black" else ',
-        '"0.65 0.65 0.65 1.0" if "', secondary_color_name, '" == "gray" else ',
+        '"0.75 0.75 0.75 1.0" if "', secondary_color_name, '" == "gray" else ',
         '"0.45 0.20 0.65 1.0" if "', secondary_color_name, '" == "purple" else ',
         '"0.00 0.45 0.25 1.0" if "', secondary_color_name, '" == "dark_green" else ',
         '"0.00 0.80 0.30 1.0" if "', secondary_color_name, '" == "green" else ',

@@ -30,8 +30,8 @@ def generate_launch_description():
     rviz_fixed_frame_arg = LaunchConfiguration('rviz_fixed_frame')
     generation_arg = LaunchConfiguration('generation')
 
-    primary_color_arg = LaunchConfiguration('primary_color')
-    secondary_color_arg = LaunchConfiguration('secondary_color')
+    primary_color_name = LaunchConfiguration('primary_color')
+    secondary_color_name = LaunchConfiguration('secondary_color')
 
     robot_model_path = PythonExpression([
         '"" if "', model_arg,
@@ -40,13 +40,34 @@ def generate_launch_description():
         '"/gen3/robotont.urdf.xacro" if "', generation_arg, '" == "3" else ',
         '"/lite3/robotont_lite.urdf.xacro")'
     ])
+    primary_color_rgba = PythonExpression([
+        '"0.16 0.65 0.98 1.0" if "', primary_color_name, '" == "light_blue" else ',
+        '"0.00 0.35 0.90 1.0" if "', primary_color_name, '" == "blue" else ',
+        '"0.10 0.10 0.10 1.0" if "', primary_color_name, '" == "black" else ',
+        '"0.45 0.20 0.65 1.0" if "', primary_color_name, '" == "purple" else ',
+        '"0.65 0.65 0.65 1.0" if "', primary_color_name, '" == "gray" else ',
+        '"0.00 0.45 0.25 1.0" if "', primary_color_name, '" == "dark_green" else ',
+        '"0.00 0.80 0.30 1.0" if "', primary_color_name, '" == "green" else ',
+        '"0.16 0.65 0.98 1.0"'
+    ])
 
+    secondary_color_rgba = PythonExpression([
+        '"0.16 0.65 0.98 1.0" if "', secondary_color_name, '" == "light_blue" else ',
+        '"0.00 0.35 0.90 1.0" if "', secondary_color_name, '" == "blue" else ',
+        '"1.00 1.00 0.00 1.0" if "', secondary_color_name, '" == "yellow" else ',
+        '"0.10 0.10 0.10 1.0" if "', secondary_color_name, '" == "black" else ',
+        '"0.65 0.65 0.65 1.0" if "', secondary_color_name, '" == "gray" else ',
+        '"0.45 0.20 0.65 1.0" if "', secondary_color_name, '" == "purple" else ',
+        '"0.00 0.45 0.25 1.0" if "', secondary_color_name, '" == "dark_green" else ',
+        '"0.00 0.80 0.30 1.0" if "', secondary_color_name, '" == "green" else ',
+        '"1.00 1.00 0.00 1.0"'
+    ])
     robot_description = ParameterValue(
         Command([
             'xacro ',
             robot_model_path,
-            ' main_color:="', primary_color_arg, '"',
-            ' second_color:="', secondary_color_arg, '"'
+            ' main_color:="', primary_color_rgba, '"',
+            ' second_color:="', secondary_color_rgba, '"'
         ]),
         value_type=str
     )

@@ -8,8 +8,9 @@ from launch_ros.parameter_descriptions import ParameterValue
 
 
 def generate_launch_description():
-    package = get_package_share_path('robotont_lite_description')
-    default_rviz_config_path = package / 'config/robotont_lite_description.rviz'
+    lite_pkg = get_package_share_path('robotont_lite_description')
+    gen_pkg  = get_package_share_path('robotont_description')
+    default_rviz_config_path = lite_pkg / 'config/robotont_lite_description.rviz'
 
     model_decl = DeclareLaunchArgument(name='model', default_value='')
     rviz_config_decl = DeclareLaunchArgument(name='rviz_config', default_value=str(default_rviz_config_path))
@@ -34,12 +35,14 @@ def generate_launch_description():
     secondary_color_name = LaunchConfiguration('secondary_color')
 
     robot_model_path = PythonExpression([
-        '"" if "', model_arg,
-        '" else "', str(package / "urdf/"), '" + (',
-        '"/gen2_1/robotont.urdf.xacro" if "', generation_arg, '" == "2.1" else ',
-        '"/gen3/robotont.urdf.xacro" if "', generation_arg, '" == "3" else ',
-        '"/lite3/robotont_lite.urdf.xacro")'
+        # If user provided --model, use it; else choose by generation
+        '"', model_arg, '" if "', model_arg, '" else ('
+        '"', str(gen_pkg / "urdf/gen3/robotont.urdf.xacro"), '" if "', generation_arg, '" == "3" else '
+        '"', str(gen_pkg / "urdf/gen2_1/robotont.urdf.xacro"), '" if "', generation_arg, '" == "2.1" else '
+        '"', str(lite_pkg / "urdf/lite3/robotont_lite.urdf.xacro"), '"'
+        ')'
     ])
+
     primary_color_rgba = PythonExpression([
         '"0.16 0.65 0.98 1.0" if "', primary_color_name, '" == "light_blue" else ',
         '"0.00 0.35 0.90 1.0" if "', primary_color_name, '" == "blue" else ',

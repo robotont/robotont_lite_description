@@ -5,11 +5,9 @@ Description package for robotont lite version that contains meshes, URDF and xac
 
 1. List of dependencies
 
-1.1. rviz
-
-1.2. urdf
-
-1.3. xacro
+- rviz
+- urdf
+- xacro
 
 2. Install dependencies
 
@@ -44,5 +42,18 @@ To display the robot model run:
 ```
 ros2 launch robotont_lite_description display_robot_model.launch.py
 ```
+
+Displays the robot's model in rviz, with different frame and lite module colors:
+
+```bash
+ros2 launch robotont_lite_description display_robot_model.launch.py primary_color:=light_blue
+```
+
+Supported formats for `primary_color` and `secondary_color`:
+- color name:      primary_color:=lightblue 
+- RGBA (0..1):     primary_color:="0.16 0.65 0.98 1.0"
+- RGBA (0..255):   primary_color:="41 166 250 255"
+- HEX:             primary_color:="#29a6faff" 
+
 This launch file will start the necessary nodes and load the Robotont Lite description into RViz.
 

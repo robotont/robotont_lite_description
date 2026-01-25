@@ -99,12 +99,9 @@ def launch_setup(context, *args, **kwargs):
     
     return [
         Node(
-            namespace=namespace,
-            package='rclcpp_components',
-            executable='component_container',
-            name='robot_description_server',
+            package='robot_state_publisher',
+            executable='robot_state_publisher',
             parameters=[{'robot_description': robot_description}],
-            output='screen'
         )
     ]
 

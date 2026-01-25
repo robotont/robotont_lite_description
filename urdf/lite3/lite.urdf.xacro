@@ -23,7 +23,7 @@
             <visual>
                 <origin xyz="0 -0.043 0" rpy="${pi/2} 0 ${pi/2}"/>
                 <geometry>
-                    <mesh filename="file://$(find robotont_lite_description)/meshes/lite3/cable_box.STL"/>
+                    <mesh filename="package://robotont_lite_description/meshes/lite3/cable_box.STL"/>
                 </geometry>
                 <material name="${prefix}cable_box_material">
                     <color rgba="${box_color}"/>
@@ -45,7 +45,7 @@
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 ${-pi/2}"/>
                 <geometry>
-                    <mesh filename="file://$(find robotont_lite_description)/meshes/lite3/pi_module_pla.STL"/>
+                    <mesh filename="package://robotont_lite_description/meshes/lite3/pi_module_pla.STL"/>
                 </geometry>
                 <material name="${prefix}pi_module_material">
                     <color rgba="${pi_module_color}"/>
@@ -67,7 +67,7 @@
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 ${-pi/2}"/>
                 <geometry>
-                    <mesh filename="file://$(find robotont_lite_description)/meshes/lite3/pi_module_spacers.STL"/>
+                    <mesh filename="package://robotont_lite_description/meshes/lite3/pi_module_spacers.STL"/>
                 </geometry>
                 <material name="${prefix}pi_module_spacers_material">
                     <color rgba="${spacers_color}"/>
@@ -89,7 +89,7 @@
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 ${pi}"/>
                 <geometry>
-                    <mesh filename="file://$(find robotont_lite_description)/meshes/lite3/RPi_case.STL"
+                    <mesh filename="package://robotont_lite_description/meshes/lite3/RPi_case.STL"
                     scale="0.001 0.001 0.001"/>
                 </geometry>
                 <material name="${prefix}rasberry_material">
@@ -112,7 +112,7 @@
             <visual>
                 <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi}"/>
                 <geometry>
-                    <mesh scale="0.001 0.001 0.001" filename="file://$(find robotont_lite_description)/meshes/lite3/rplidar-a2m4-r1_no_cable.STL"/>
+                    <mesh scale="0.001 0.001 0.001" filename="package://robotont_lite_description/meshes/lite3/rplidar-a2m4-r1_no_cable.STL"/>
                 </geometry>
                 <material name="${prefix}lidar_material">
                     <color rgba="${lidar_color}"/>
@@ -134,7 +134,7 @@
             <visual>
                 <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi/2}"/>
                 <geometry>
-                    <mesh scale="0.001 0.001 0.001" filename="file://$(find robotont_lite_description)/meshes/lite3/rpiAIcamera.STL"/>
+                    <mesh scale="0.001 0.001 0.001" filename="package://robotont_lite_description/meshes/lite3/rpiAIcamera.STL"/>
                 </geometry>
                 <material name="${prefix}camera_material">
                     <color rgba="${lidar_color}"/>

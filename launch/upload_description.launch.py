@@ -101,6 +101,8 @@ def launch_setup(context, *args, **kwargs):
         Node(
             package='robot_state_publisher',
             executable='robot_state_publisher',
+            name='robot_state_publisher',
+            namespace=namespace,
             parameters=[{'robot_description': robot_description}],
         )
     ]
